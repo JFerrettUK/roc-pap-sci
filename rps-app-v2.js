@@ -40,7 +40,7 @@ let playerSelection = "rock";
 //◦ If Paper > Paper
 //◦ If Scissors > Scissors
 
-function playRound() {
+function playRound(playerSelection, computerSelection) {
     let playerSelectionLC = playerSelection.toLowerCase();
     if ((playerSelectionLC === "rock") && (computerSelection === "scissors")) {
         return ("You win! Rock beats scissors.");
@@ -75,4 +75,15 @@ function playRound() {
 
 //Report a winner or loser at the end.
 
-function game() {}
+function game() {
+    let consolelog1 = playRound(playerSelection, computerSelection);
+    console.log(consolelog1);
+    let consolelog2 = playRound(playerSelection, computerSelection);
+    console.log(consolelog2);
+    let consolelog3 = playRound(playerSelection, computerSelection);
+    console.log(consolelog3);
+    let consolelog4 = playRound(playerSelection, computerSelection);
+    console.log(consolelog4);
+    let consolelog5 = playRound(playerSelection, computerSelection);
+    console.log(consolelog5);
+}
