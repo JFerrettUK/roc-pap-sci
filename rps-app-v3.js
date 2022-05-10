@@ -41,6 +41,9 @@ function computerPlay() {
 //◦ If Scissors > Scissors
 
 function playRound() {
+    let playerSelection = prompt("Rock, paper, or scissors?");
+    let playerSelectionLC = playerSelection.toLowerCase();
+    let computerSelection = computerPlay();
     if ((playerSelectionLC === "rock") && (computerSelection === "scissors")) {
         return ("You win! Rock beats scissors.");
     } else if ((playerSelectionLC === "scissors") && (computerSelection === "paper")) {
@@ -76,9 +79,6 @@ function playRound() {
 
 function game(playRound) {
     for (let i = 0; i < 5; i++) {
-        let playerSelection = prompt("Rock, paper, or scissors?");
-        let computerSelection = computerPlay();
-        let playerSelectionLC = playerSelection.toLowerCase();
-        playRound();
+        console.log(playRound());
      }
 }
