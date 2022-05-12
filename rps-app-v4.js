@@ -56,10 +56,12 @@ function playRound() {
     if (((playerSelection2 === "Rock") && (computerSelection === "scissors")) 
         || ((playerSelection2 === "Scissors") && (computerSelection === "paper"))
         || ((playerSelection2 === "Paper") && (computerSelection === "rock"))) {
+        return playerScore += 1;   
         return playerWinRound;
     } else if (((playerSelection2 === "Paper") && (computerSelection === "scissors"))
         || ((playerSelection2 === "Rock") && (computerSelection === "paper")) 
         || ((playerSelection2 === "Scissors") && (computerSelection === "rock"))) {
+        return computerScore += 1;
         return computerWinRound; 
     } else if (((playerSelection2 === "Paper") && (computerSelection === "paper"))
         || ((playerSelection2 === "Rock") && (computerSelection === "rock"))
@@ -68,24 +70,36 @@ function playRound() {
     } else {
         return ("What?")
     }
+    console.log(playerScore)
 }
 
 
 //Write a NEW function called game(). 
 
-//Call the playRound function inside of this function
-
-//Play a 5 round game using a loop
-
-//Keep score 
+//Call the playRound function inside of this function.
 
 function game(playRound) {
+    
+    let playerScore = 0;
+    let computerScore = 0;
     let playerWin = "Player wins the game! Congratulations!";
     let computerWin = "Computer wins the game! Congratulations!";
-    
+
+//Play a 5 round game using a loop.
+
     for (let i = 0; i < 5; i++) {
         console.log(playRound());
-     }
-}
+        if (computerScore > playerScore) {
+            console.log(playerWin);
+        } else if (playerScore > computerScore) {
+            console.log(computerWin);
+    }
+
+//Keep score.
 
 //Report a winner or loser at the end.
+
+
+    }
+}
+
