@@ -9,7 +9,7 @@ function computerPlay() {
 
 //Write a function that plays a single round of Rock Paper Scissors. The function should
 //take two parameters - the playerSelection and computerSelection - and then return a
-//string that declares the winner of the round like so: "You Lose! Paper beats Rock"
+//string that declares the winner of the round.
 
 let playerScore = 0
 let computerScore = 0
@@ -28,7 +28,7 @@ function playRound() {
 
     let playerWinRound = ("You win! " + playerSelection2 + " beats " + computerSelection + ".");
     let computerWinRound = ("You lose! " + playerSelection2 + " is beaten by " + computerSelection + ".");
-    let draw = "It's a draw!";
+    let draw = ("It's a draw! " + playerSelection2 + " versus " + computerSelection + "...");
 
     if (((playerSelection2 === "Rock") && (computerSelection === "scissors")) 
         || ((playerSelection2 === "Scissors") && (computerSelection === "paper"))
