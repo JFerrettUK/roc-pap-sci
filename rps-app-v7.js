@@ -6,8 +6,6 @@
 //to make sure this is returning the expected output 
 //before moving to the next step!
 
-//Rock, Paper, Scissors values (both capitalised and uncapitalised).
-
 //A function called ComputerPlay which randomly returns either Rock, Paper or Scissors.
 
 function computerPlay() {
@@ -20,94 +18,74 @@ function computerPlay() {
 //take two parameters - the playerSelection and computerSelection - and then return a
 //string that declares the winner of the round like so: "You Lose! Paper beats Rock"
 
-//Ask for player input (1)
-
-//let playerSelection = prompt("Rock, paper, or scissors?");
-//let playerSelection = "rock";
-
-//Run computerPlay and store that value (2)
-
-//let computerSelection = computerPlay();
-
-//Create the following potential outputs with a if/switch/tertary operator (first value 1, second value 2):
-//◦ If Rock > Scissors
-//◦ If Scissors > Paper
-//◦ If Paper > Rock
-//◦ If Paper > Scissors
-//◦ If Rock > Paper
-//◦ If Scissors > Rock
-//◦ If Rock > Rock
-//◦ If Paper > Paper
-//◦ If Scissors > Scissors
+let playerScore = 0
+let computerScore = 0
 
 function playRound() {
+
+//Rock, Paper, Scissors values (both capitalised and uncapitalised).
+
     function titleCase(){
         return playerSelection[0].toUpperCase() + playerSelection.slice(1).toLowerCase();
       }
-
-    let playerScore = 0;
-    let computerScore = 0;
 
     let playerSelection = prompt("Rock, paper, or scissors?");
     let playerSelection2 = titleCase(playerSelection);
     let computerSelection = computerPlay();
 
+    let playerWinRound = ("You win! " + playerSelection2 + " beats " + computerSelection + ".");
+    let computerWinRound = ("You lose! " + playerSelection2 + " is beaten by " + computerSelection + ".");
+    let draw = "It's a draw!";
+
     if (((playerSelection2 === "Rock") && (computerSelection === "scissors")) 
         || ((playerSelection2 === "Scissors") && (computerSelection === "paper"))
         || ((playerSelection2 === "Paper") && (computerSelection === "rock"))) {
-        return playerScore += 1;   
-        return playerWinRound;
+        playerScore ++;  
+        console.log(playerWinRound);
     } else if (((playerSelection2 === "Paper") && (computerSelection === "scissors"))
         || ((playerSelection2 === "Rock") && (computerSelection === "paper")) 
         || ((playerSelection2 === "Scissors") && (computerSelection === "rock"))) {
-        return computerScore += 1;
-        return computerWinRound; 
+        computerScore ++;
+        console.log(computerWinRound);
     } else if (((playerSelection2 === "Paper") && (computerSelection === "paper"))
         || ((playerSelection2 === "Rock") && (computerSelection === "rock"))
         || ((playerSelection2 === "Scissors") && (computerSelection === "scissors"))) {
-        return draw; 
+        console.log(draw);
     } else {
         return ("What?")
     }
 }
 
-
 //Write a NEW function called game(). 
 
 //Call the playRound function inside of this function.
 
+//scoreCount will call at the end of the loop, declaring whether playerScore or computerScore has the greater number.
+
 function game(playRound) {
     
-    let playerScore = 0;
-    let computerScore = 0;
-
-    let playerWinRound = ("You win! " + playerSelection2 + " beats " + computerSelection + ".");
-    let computerWinRound = ("You lose! " + playerSelection2 + " is beaten by " + computerSelection + ".");
-    let draw = "Draw!";
-    let playerWin = "Player wins the game! Congratulations!";
-    let computerWin = "Computer wins the game! Congratulations!";
-
 //Play a 5 round game using a loop.
 
+    console.log("Time for a 5 round game of Rock, Paper, Scissors...")
+
     for (let i = 0; i < 5; i++) {
-        console.log(playRound());
-        if (computerScore > playerScore) {
-            console.log(playerWinRound);
-        } else if (computerScore > playerScore) {
-            console.log(computerWinRound);
-        } else if (playerScore > computerScore) {
-            console.log(computerWin);
-        } else if (computerScore > 2) {
-            console.log(playerWin);
-        } else if (playerScore > 2) {
-            console.log(computerWin);
+        playRound();
     }
 
-//Keep score.
+    //Keep score.
+    //Report a winner or loser at the end. 
 
-//Report a winner or loser at the end.
-
-
+    let playerWinGame = ("You scored " + playerScore + " and the computer scored " + computerScore + ". You win! Congratulations.");
+    let computerWinGame = ("You scored " + playerScore + " and the computer scored " + computerScore + ". You lose! Better luck next time.");
+    let drawGame = ("You scored " + playerScore + " and the computer scored " + computerScore + ". It's a draw!")
+    
+    if (playerScore > computerScore) {
+        console.log(playerWinGame);
+    } else if (playerScore < computerScore) {
+        console.log(computerWinGame)
+    } else {
+        console.log(drawGame)
     }
 }
+
 

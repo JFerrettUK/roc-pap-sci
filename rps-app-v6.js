@@ -27,6 +27,10 @@ function computerPlay() {
 
 //Run computerPlay and store that value (2)
 
+let playerScore;
+let computerScore;
+let bothScore;
+
 //let computerSelection = computerPlay();
 
 //Create the following potential outputs with a if/switch/tertary operator (first value 1, second value 2):
@@ -41,12 +45,14 @@ function computerPlay() {
 //◦ If Scissors > Scissors
 
 function playRound() {
+
     function titleCase(){
         return playerSelection[0].toUpperCase() + playerSelection.slice(1).toLowerCase();
-      }
+        }  
 
-    let playerScore = 0;
-    let computerScore = 0;
+    let playerWinRound = ("You win! " + playerSelection2 + " beats " + computerSelection + ".");
+    let computerWinRound = ("You lose! " + playerSelection2 + " is beaten by " + computerSelection + ".");
+    let draw = ("Draw!")
 
     let playerSelection = prompt("Rock, paper, or scissors?");
     let playerSelection2 = titleCase(playerSelection);
@@ -55,59 +61,49 @@ function playRound() {
     if (((playerSelection2 === "Rock") && (computerSelection === "scissors")) 
         || ((playerSelection2 === "Scissors") && (computerSelection === "paper"))
         || ((playerSelection2 === "Paper") && (computerSelection === "rock"))) {
-        return playerScore += 1;   
-        return playerWinRound;
+        return ((playerScore  = true) && (computerScore = false));   
     } else if (((playerSelection2 === "Paper") && (computerSelection === "scissors"))
         || ((playerSelection2 === "Rock") && (computerSelection === "paper")) 
         || ((playerSelection2 === "Scissors") && (computerSelection === "rock"))) {
-        return computerScore += 1;
-        return computerWinRound; 
+        return ((computerScore  = true) && (playerScore = false));  
     } else if (((playerSelection2 === "Paper") && (computerSelection === "paper"))
         || ((playerSelection2 === "Rock") && (computerSelection === "rock"))
         || ((playerSelection2 === "Scissors") && (computerSelection === "scissors"))) {
-        return draw; 
+        return ((computerScore  = true) && (playerScore = false));  ; 
     } else {
         return ("What?")
     }
 }
-
 
 //Write a NEW function called game(). 
 
 //Call the playRound function inside of this function.
 
 function game(playRound) {
-    
-    let playerScore = 0;
-    let computerScore = 0;
-
-    let playerWinRound = ("You win! " + playerSelection2 + " beats " + computerSelection + ".");
-    let computerWinRound = ("You lose! " + playerSelection2 + " is beaten by " + computerSelection + ".");
-    let draw = "Draw!";
-    let playerWin = "Player wins the game! Congratulations!";
-    let computerWin = "Computer wins the game! Congratulations!";
 
 //Play a 5 round game using a loop.
 
     for (let i = 0; i < 5; i++) {
-        console.log(playRound());
-        if (computerScore > playerScore) {
-            console.log(playerWinRound);
-        } else if (computerScore > playerScore) {
+
+        function titleCase(){
+            return playerSelection[0].toUpperCase() + playerSelection.slice(1).toLowerCase();
+            }  
+        
+    let playerWin = "Player wins the game! Congratulations!";
+    let computerWin = "Computer wins the game! Congratulations!";
+        
+    playRound();
+    
+       if ((playerScore === true) && (computerScore === false)) {
+           console.log(playerWinRound);   
+        } else if ((computerScore === true) && (playerScore === false)) {
             console.log(computerWinRound);
-        } else if (playerScore > computerScore) {
-            console.log(computerWin);
-        } else if (computerScore > 2) {
-            console.log(playerWin);
-        } else if (playerScore > 2) {
-            console.log(computerWin);
+        } else if ((computerScore === true) && (playerScore === true)) {
+            console.log(draw);
+        }
     }
+}
 
 //Keep score.
 
 //Report a winner or loser at the end.
-
-
-    }
-}
-
