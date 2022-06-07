@@ -5,7 +5,7 @@ function computerPlay() {
     let rps = ["rock", "paper", "scissors"];
     let random = Math.floor(Math.random() * rps.length);
     return (random, rps[random]);
-}
+} 
 
 //Write a function that plays a single round of Rock Paper Scissors. The function should
 //take two parameters - the playerSelection and computerSelection - and then return a
