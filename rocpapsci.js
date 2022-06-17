@@ -99,7 +99,7 @@ function playRound(playerSelection) {
 //}
 
 
-function updateScore (computerScore, playerScore) {
+function updateScore (playerScore, computerScore) {
     scoreboard.classList.add('content');
     let score = `Player : ${playerScore}   |   Computer : ${computerScore}`
     scoreboard.textContent = score; 
