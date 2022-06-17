@@ -107,11 +107,11 @@ function updateScore (playerScore, computerScore) {
 
 function updateWinner (winner) {
     announcement.classList.add('content');
-    if (playerScore === 5) {
+    if (computerScore === 5) {
         announcement.textContent = "The computer reached 5 points. You lose the game!"; 
         computerScore = 0;
         playerScore = 0;
-    } else if (computerScore === 5) {
+    } else if (playerScore === 5) {
         announcement.textContent = "You reached 5 points. You win the game!"; 
         computerScore = 0;
         playerScore = 0;
