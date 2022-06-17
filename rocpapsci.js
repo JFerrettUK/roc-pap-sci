@@ -101,7 +101,7 @@ function playRound(playerSelection) {
 
 function updateScore (computerScore, playerScore) {
     scoreboard.classList.add('content');
-    let score = `Computer : ${computerScore}   |   Player : ${playerScore}`
+    let score = `Player : ${playerScore}   |   Computer : ${computerScore}`
     scoreboard.textContent = score; 
 }
 
@@ -109,30 +109,32 @@ function updateWinner (winner) {
     announcement.classList.add('content');
     if (playerScore === 5) {
         announcement.textContent = "The computer reached 5 points. You lose the game!"; 
+        computerScore = 0;
+        playerScore = 0;
     } else if (computerScore === 5) {
         announcement.textContent = "You reached 5 points. You win the game!"; 
-        playerScore = 0;
         computerScore = 0;
+        playerScore = 0;
     } else {
     announcement.textContent = winner; 
     }
 }
 
-const rocBtn = document.querySelector('#rocBtn');
+const rocBtn = document.querySelector('.rock');
 rocBtn.addEventListener('click', () => {
     playRound("Rock");
     updateScore(playerScore, computerScore)
     updateWinner(winner)
   }); 
   
-const papBtn = document.querySelector('#papBtn');
+const papBtn = document.querySelector('.paper');
 papBtn.addEventListener('click', () => {
     playRound("Paper");
     updateScore(playerScore, computerScore)
     updateWinner(winner)
   }); 
 
-const sciBtn = document.querySelector('#sciBtn');
+const sciBtn = document.querySelector('.scissors');
 sciBtn.addEventListener('click', () => {
     playRound("Scissors");
     updateScore(playerScore, computerScore)
