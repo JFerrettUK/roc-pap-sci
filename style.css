@@ -1,0 +1,36 @@
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    display:flex; flex-direction:column; justify-content:center;
+    min-height:80vh;
+}
+
+.rpshead {
+    text-align: center;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+}
+
+div {
+    text-align: center;
+}
+
+#rocBtn, #sciBtn, #papBtn {
+    font-weight: bold;
+    font-size: 14px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 6px;
+    color: #000000;
+    background: rgb(245, 245, 245);
+    border: none;
+}

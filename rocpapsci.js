@@ -1,4 +1,3 @@
-
 //A function called ComputerPlay which randomly returns either Rock, Paper or Scissors.
 
 function computerPlay() {
@@ -7,47 +6,65 @@ function computerPlay() {
     return (random, rps[random]);
 } 
 
-//Write a function that plays a single round of Rock Paper Scissors. The function should
-//take two parameters - the playerSelection and computerSelection - and then return a
+//Take two parameters - the playerSelection and computerSelection - and then return a
 //string that declares the winner of the round.
 
 let playerScore = 0
 let computerScore = 0
+let winner = `Best of 5, yeah? Let's play...`
 
-function playRound() {
+let score = `Computer : ${computerScore}   |   Player : ${playerScore}`
 
-//Rock, Paper, Scissors values (both capitalised and uncapitalised).
+let scoreboard = document.createElement('P');
+scoreboard.classList.add('content');
+scoreboard.textContent = score;
+resultBox.appendChild(scoreboard);
 
-    function titleCase(){
-        return playerSelection[0].toUpperCase() + playerSelection.slice(1).toLowerCase();
-      }
+let announcement = document.createElement('P');
+announcement.classList.add('content');
+announcement.textContent = winner;
+resultBox.appendChild(announcement);
 
-    let playerSelection = prompt("Rock, paper, or scissors?");
-    let playerSelection2 = titleCase(playerSelection);
+function playRound(playerSelection) {
+
     let computerSelection = computerPlay();
 
-    let playerWinRound = ("You win! " + playerSelection2 + " beats " + computerSelection + ".");
-    let computerWinRound = ("You lose! " + playerSelection2 + " is beaten by " + computerSelection + ".");
-    let draw = ("It's a draw! " + playerSelection2 + " versus " + computerSelection + "...");
+    let playerWinRound = (playerSelection + " beats " + computerSelection + ". You win this round!");
+    let computerWinRound = (playerSelection + " is beaten by " + computerSelection + ". You lose this round!");
+    let draw = (playerSelection + " versus " + computerSelection + ". This round is a draw!");
 
-    if (((playerSelection2 === "Rock") && (computerSelection === "scissors")) 
-        || ((playerSelection2 === "Scissors") && (computerSelection === "paper"))
-        || ((playerSelection2 === "Paper") && (computerSelection === "rock"))) {
-        playerScore ++;  
-        console.log(playerWinRound);
-    } else if (((playerSelection2 === "Paper") && (computerSelection === "scissors"))
-        || ((playerSelection2 === "Rock") && (computerSelection === "paper")) 
-        || ((playerSelection2 === "Scissors") && (computerSelection === "rock"))) {
-        computerScore ++;
-        console.log(computerWinRound);
-    } else if (((playerSelection2 === "Paper") && (computerSelection === "paper"))
-        || ((playerSelection2 === "Rock") && (computerSelection === "rock"))
-        || ((playerSelection2 === "Scissors") && (computerSelection === "scissors"))) {
-        console.log(draw);
+    const resultBox = document.querySelector('#resultBox');
+    const rocResult = document.createElement('P');
+
+    if (((playerSelection === "Rock") && (computerSelection === "scissors")) 
+        || ((playerSelection === "Scissors") && (computerSelection === "paper"))
+        || ((playerSelection === "Paper") && (computerSelection === "rock"))) {
+            playerScore ++;
+            winner = playerWinRound;
+            console.log(winner)
+            return (playerScore, winner);
+    } else if (((playerSelection === "Paper") && (computerSelection === "scissors"))
+        || ((playerSelection === "Rock") && (computerSelection === "paper")) 
+        || ((playerSelection === "Scissors") && (computerSelection === "rock"))) {
+            computerScore ++;
+            winner = computerWinRound;
+            console.log(winner)
+            return (computerScore, winner);
+    } else if (((playerSelection === "Paper") && (computerSelection === "paper"))
+        || ((playerSelection === "Rock") && (computerSelection === "rock"))
+        || ((playerSelection === "Scissors") && (computerSelection === "scissors"))) {
+            winner = draw;
+            console.log(winner)
+            return winner;
     } else {
-        return ("What?")
+        rocResult.classList.add('content');
+        rocResult.textContent = "What?";
+        resultBox.appendChild(rocResult);
     }
+    
+    return (computerScore, playerScore, winner);
 }
+
 
 //Write a NEW function called game(). 
 
@@ -55,30 +72,69 @@ function playRound() {
 
 //scoreCount will call at the end of the loop, declaring whether playerScore or computerScore has the greater number.
 
-function game(playRound) {
-    
 //Play a 5 round game using a loop.
 
-    console.log("Time for a 5 round game of Rock, Paper, Scissors...")
+//function game(playRound) {
 
-    for (let i = 0; i < 5; i++) {
-        playRound();
-    }
+//    console.log("Time for a 5 round game of Rock, Paper, Scissors...")
 
-    //Keep score.
-    //Report a winner or loser at the end. 
+//    for (let i = 0; i < 5; i++) {
+//    playRound();
+//  }
 
-    let playerWinGame = ("You scored " + playerScore + " and the computer scored " + computerScore + ". You win! Congratulations.");
-    let computerWinGame = ("You scored " + playerScore + " and the computer scored " + computerScore + ". You lose! Better luck next time.");
-    let drawGame = ("You scored " + playerScore + " and the computer scored " + computerScore + ". It's a draw!")
+//Keep score.
+//Report a winner or loser at the end. 
+
+//    let playerWinGame = ("You scored " + playerScore + " and the computer scored " + computerScore + ". You win! Congratulations.");
+//    let computerWinGame = ("You scored " + playerScore + " and the computer scored " + computerScore + ". You lose! Better luck next time.");
+//    let drawGame = ("You scored " + playerScore + " and the computer scored " + computerScore + ". It's a draw!")
     
-    if (playerScore > computerScore) {
-        console.log(playerWinGame);
-    } else if (playerScore < computerScore) {
-        console.log(computerWinGame)
+//    if (playerScore > computerScore) {
+//       console.log(playerWinGame);
+//    } else if (playerScore < computerScore) {
+//       console.log(computerWinGame)
+//  } else {
+//       console.log(drawGame)
+//  }
+//}
+
+
+function updateScore (computerScore, playerScore) {
+    scoreboard.classList.add('content');
+    let score = `Computer : ${computerScore}   |   Player : ${playerScore}`
+    scoreboard.textContent = score; 
+}
+
+function updateWinner (winner) {
+    announcement.classList.add('content');
+    if (playerScore === 5) {
+        announcement.textContent = "The computer reached 5 points. You lose the game!"; 
+    } else if (computerScore === 5) {
+        announcement.textContent = "You reached 5 points. You win the game!"; 
+        playerScore = 0;
+        computerScore = 0;
     } else {
-        console.log(drawGame)
+    announcement.textContent = winner; 
     }
 }
 
+const rocBtn = document.querySelector('#rocBtn');
+rocBtn.addEventListener('click', () => {
+    playRound("Rock");
+    updateScore(playerScore, computerScore)
+    updateWinner(winner)
+  }); 
+  
+const papBtn = document.querySelector('#papBtn');
+papBtn.addEventListener('click', () => {
+    playRound("Paper");
+    updateScore(playerScore, computerScore)
+    updateWinner(winner)
+  }); 
 
+const sciBtn = document.querySelector('#sciBtn');
+sciBtn.addEventListener('click', () => {
+    playRound("Scissors");
+    updateScore(playerScore, computerScore)
+    updateWinner(winner)
+  }); 
