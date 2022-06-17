@@ -4,7 +4,7 @@ body {
     min-height:90vh;
 }
 
-.rpshead {
+.rpshead, h1 {
     text-align: center;
 }
 
@@ -13,11 +13,13 @@ body {
     justify-content: center;
     align-items: center;
     height: 120px;
+    margin-top: 13px;
 }
 
 div {
     text-align: center;
 }
+
 
 #rocBtn, #sciBtn, #papBtn {
     font-weight: bold;
